@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MSFS-SimConnect</string>
+    <string name="t0001">MSFS-SimConnect デスクトップ クライアントで QR コードをスキャンします。</string>
+    <string name="app_title">PCでMSFSマップに接続する</string>
+    <string name="ip_">IPアドレス</string>
+    <string name="port_">ポート(Port)</string>
+    <string name="gogogo">コンピュータに接続する</string>
+    <string name="or_">または</string>
+    <string name="ScanCon">QRコードをスキャンして接続</string>
+    <string name="goback">前のページに戻ってください！</string>
+    <string name="qrerr">QRコード形式エラー</string>
+    <string name="connok">現在のステータス: 接続済み</string>
+    <string name="noconnok">現在のステータス: 接続されていません</string>
+    <string name="connfail">接続に失敗しました!</string>
+    <string name="conning">接続中...</string>
+    <string name="conntimeout">接続タイムアウト</string>
+    <string name="te1">ポート番号は数字でなければなりません。</string>
+    <string name="te2">有効なペアリング情報を入力してください。</string>
+    <string name="unpos">現在の座標: 取得されていません</string>
+</resources>

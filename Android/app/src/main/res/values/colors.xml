@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_01">#FFF</color>
+    <color name="text_color_01">#FF000000</color>
+    <color name="text_color_02">#8c8c8c</color>
+    <color name="text_color_03">#606060</color>
+    <color name="text_color_04">#535353</color>
+    <color name="color_01">#000</color>
+    <color name="color_02">#FFF</color>
+    <color name="color_03">#4A000000</color>
+    <color name="color_04">#FFF</color>
+    <color name="state_ok">#4CAF50</color>
+    <color name="state_error">#F44336</color>
+    <color name="state_wait">#FFC107</color>
+    <color name="state_normal">#CCCCCC</color>
+</resources>

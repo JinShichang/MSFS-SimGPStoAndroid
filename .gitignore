@@ -1,0 +1,29 @@
+# Visual Studio
+.vs/
+*.ipch
+*.aps
+*.user
+
+# 构建产物
+/CPP/**/x64/
+/CPP/**/Debug/
+/CPP/**/Release/
+*.obj
+*.pdb
+*.ipdb
+*.iobj
+*.tlog/
+*.log
+
+# Android
+/Android/build/
+/Android/app/build/
+/Android/.gradle/
+/Android/local.properties
+.idea/
+*.iml
+.DS_Store
+
+# 其他
+Thumbs.db
+*.db

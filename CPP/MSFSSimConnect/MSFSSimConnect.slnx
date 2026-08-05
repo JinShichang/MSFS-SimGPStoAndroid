@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="MSFSSimConnect.vcxproj" Id="64aad4af-f2d1-4b88-8859-4abd8431ab44" />
+</Solution>

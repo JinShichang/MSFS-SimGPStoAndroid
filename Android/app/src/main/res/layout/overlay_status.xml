@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overlayRoot"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_overlay"
+    android:paddingLeft="12dp"
+    android:paddingTop="8dp"
+    android:paddingRight="6dp"
+    android:paddingBottom="8dp"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:id="@+id/overlayStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/overlay_disconnected"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/overlayCoord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/overlay_no_coord"
+            android:textColor="#DDDDDD"
+            android:textSize="11sp"/>
+
+        <TextView
+            android:id="@+id/overlaySpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/overlay_no_speed"
+            android:textColor="#DDDDDD"
+            android:textSize="11sp"/>
+
+        <TextView
+            android:id="@+id/overlayHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/overlay_no_heading"
+            android:textColor="#DDDDDD"
+            android:textSize="11sp"/>
+    </LinearLayout>
+
+</LinearLayout>

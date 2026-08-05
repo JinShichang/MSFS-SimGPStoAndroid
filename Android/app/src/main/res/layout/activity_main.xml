@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+        <!-- IP 地址 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ip_"
+            android:paddingTop="16dp" />
+
+        <EditText
+            android:id="@+id/ipInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ip_hint"
+            android:inputType="text"/>
+
+        <!-- 端口 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/port_"
+            android:paddingTop="16dp" />
+
+        <EditText
+            android:id="@+id/portInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="36666"
+            android:inputType="number"/>
+
+        <!-- 连接按钮 -->
+        <Button
+            android:id="@+id/connectBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gogogo"
+            android:layout_marginTop="16dp"/>
+
+        <!-- 扫码连接按钮 -->
+        <Button
+            android:id="@+id/scanBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ScanCon"/>
+
+        <!-- 正在连接动画 -->
+        <ProgressBar
+            android:id="@+id/loadingAnim"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"/>
+
+        <!-- 状态提示 -->
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/noconnok"
+            android:paddingTop="12dp"
+            android:textAlignment="center"/>
+
+        <!-- 模拟定位开关 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mock_label"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/mockSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"/>
+        </LinearLayout>
+
+            <!-- 悬浮窗开关 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/overlay_label"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+                <Switch
+                    android:id="@+id/overlaySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <!-- 悬浮窗透明度 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/overlay_alpha_label"/>
+
+                <EditText
+                    android:id="@+id/overlayAlphaInput"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0.9"
+                    android:inputType="numberDecimal"/>
+            </LinearLayout>
+
+            <!-- 平滑补偿设置 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comp_settings_title"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/comp_hz_label"/>
+
+                <EditText
+                    android:id="@+id/injectHzInput"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:hint="25"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/comp_heading_label"/>
+
+                <EditText
+                    android:id="@+id/headingAlphaInput"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0.3"
+                    android:inputType="numberDecimal"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/comp_speed_label"/>
+
+                <EditText
+                    android:id="@+id/speedAlphaInput"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:hint="0.5"
+                    android:inputType="numberDecimal"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comp_hint"
+                android:textSize="12sp"
+                android:textColor="#888888"
+                android:layout_marginTop="6dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

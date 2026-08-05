@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MSFS-SimConnect</string>
+    <string name="t0001">Scan the QR code on the MSFS-SimConnect desktop client.</string>
+    <string name="app_title">Connect to MSFS-SimConnect PC client</string>
+    <string name="ip_">IP</string>
+    <string name="port_">Port</string>
+    <string name="gogogo">Connect to PC</string>
+    <string name="or_">or</string>
+    <string name="ScanCon">Scan to connect</string>
+    <string name="goback">Please return to the previous page!</string>
+    <string name="qrerr">QR code format error!</string>
+    <string name="connok">Current status: Connected</string>
+    <string name="noconnok">Current status: Not connected</string>
+    <string name="connfail">Connection failed!</string>
+    <string name="conning">Connecting...</string>
+    <string name="conntimeout">Connection timeout</string>
+    <string name="te1">The port number must be a number!</string>
+    <string name="te2">Please enter valid pairing information.</string>
+    <string name="unpos">Current coordinates: Not obtained</string>
+</resources>
