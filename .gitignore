@@ -20,6 +20,7 @@
 /Android/app/build/
 /Android/.gradle/
 /Android/local.properties
+/Android/keystore.properties
 .idea/
 *.iml
 .DS_Store
