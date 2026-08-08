@@ -78,7 +78,7 @@ bool UpnpAttempt() {
     if (index == 1 || index == 2) {
         bool anyOk = false;
         std::string failInfo;
-        for (const char* proto : { "TCP", "UDP" }) {
+        for (const char* proto : { "UDP" }) {   // 只映射 UDP（手机端仅用 UDP）
             int r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
                 std::to_string(g_port).c_str(),
                 std::to_string(g_port).c_str(),
@@ -99,7 +99,7 @@ bool UpnpAttempt() {
             g_igdData = data;
             g_mapped = true;
             g_ok = true;
-            g_status = "UPnP 已映射 " + std::to_string(g_port) + " (TCP/UDP) -> " + g_localIp;
+            g_status = "UPnP(IPv4)已映射" + std::to_string(g_port) + "(UDP)";
             if (hMainWnd) PostMessageW(hMainWnd, WM_APP_UPNP_UPDATE, 0, 0);
             return true;
         }

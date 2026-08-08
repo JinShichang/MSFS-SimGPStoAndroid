@@ -14,3 +14,8 @@ void PcpStart(int port);
 void PcpStop();
 
 std::string PcpStatusText();
+
+// 选择用于 PCP / 二维码的公网 IPv6 源地址：
+// 默认路由接口上当前 Preferred 的 2000::/3 全局单播地址（EUI-64 优先），
+// 排除链路本地 / ULA / 回环 / 已废弃(deprecated)地址。
+std::string GetBestIPv6Address();

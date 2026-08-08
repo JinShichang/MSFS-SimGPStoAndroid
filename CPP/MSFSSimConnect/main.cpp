@@ -43,6 +43,7 @@
 #define IDC_LABEL_PORT    1006
 #define IDC_EDIT_PORT     1007
 #define IDC_BTN_APPLY_PORT 1008
+#define WM_APP_PCP_UPDATE (WM_APP + 3)   // 与 pcp_mapping.cpp 中的定义保持一致
 
 #pragma comment(lib, "SimConnect.lib")
 #pragma comment(lib, "Ws2_32.lib")
@@ -142,45 +143,10 @@ std::string GetLocalIP() {
     return ip;
 }
 
-// 获取公网（全局单播）IPv6 地址；过滤链路本地 fe80::/10、ULA fc00::/7、回环等
+// 获取公网（全局单播）IPv6 地址：默认路由接口上 Preferred 的地址，
+// EUI-64（含 ff:fe）优先；与 PCP 放行使用同一个地址，避免二维码指向已废弃前缀。
 std::string GetPublicIPv6() {
-    char hostname[256] = { 0 };
-    if (gethostname(hostname, sizeof(hostname)) != 0) return "";
-
-    struct addrinfo hints = {};
-    hints.ai_family = AF_INET6;
-    hints.ai_socktype = SOCK_STREAM;
-    struct addrinfo* res = nullptr;
-    std::vector<std::string> candidates;
-    if (getaddrinfo(hostname, NULL, &hints, &res) == 0) {
-        for (struct addrinfo* p = res; p != nullptr; p = p->ai_next) {
-            struct sockaddr_in6* a6 = (struct sockaddr_in6*)p->ai_addr;
-            const unsigned char* b = a6->sin6_addr.s6_addr;
-            if (IN6_IS_ADDR_LOOPBACK(&a6->sin6_addr)) continue;           // ::1
-            if (IN6_IS_ADDR_LINKLOCAL(&a6->sin6_addr)) continue;          // fe80::/10
-            if ((b[0] & 0xfe) == 0xfc) continue;                          // fc00::/7 ULA
-            if ((b[0] & 0xe0) != 0x20) continue;                          // 只保留 2000::/3 全局单播
-            char buf[INET6_ADDRSTRLEN] = { 0 };
-            inet_ntop(AF_INET6, &a6->sin6_addr, buf, sizeof(buf));
-            candidates.push_back(buf);
-        }
-        freeaddrinfo(res);
-    }
-
-    // 优先选稳定地址：EUI-64 派生（含 ff:fe，由网卡 MAC 生成，不随隐私扩展轮换）
-    // 没有稳定地址时选最长的（临时地址通常更短），避免选到无法连接的地址
-    std::string stable;
-    std::string longest;
-    for (const auto& c : candidates) {
-        if (c.find("ff:fe") != std::string::npos) {
-            stable = c;
-            break;
-        }
-        if (longest.empty() || c.length() > longest.length()) {
-            longest = c;
-        }
-    }
-    return stable.empty() ? longest : stable;
+    return GetBestIPv6Address();
 }
 
 // 以下客户端操作均在 sockMutex 保护下调用
@@ -247,7 +213,7 @@ void UpdateQRCode() {
 void UpdatePublicInfo(HWND hwnd) {
     if (!hwnd) return;
     std::string ipv6 = GetPublicIPv6();
-    std::string info = ipv6.empty() ? "未检测到公网 IPv6" : ("公网 IPv6: " + ipv6);
+    std::string info = ipv6.empty() ? "未检测到公网 IPv6" : ("公网IPv6 " + ipv6);
     std::string upnp = UpnpStatusText();
     std::string pcp = PcpStatusText();
     if (!upnp.empty()) info += " · " + upnp;
@@ -551,8 +517,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         InvalidateRect(hwnd, NULL, TRUE);
         break;
 
-    case WM_APP + 3:
-        UpdatePublicInfo(hwnd);
+    case WM_APP + 3:   // PCP 创建/续期/删除结果刷新（与 pcp_mapping.cpp 的 WM_APP_PCP_UPDATE 一致）
+        if (g_publicMode.load())
+            UpdatePublicInfo(hwnd);
+        else
+            SetDlgItemTextA(hwnd, IDC_STATIC_INFO, PcpStatusText().c_str());
         break;
 
     case WM_COMMAND:
@@ -599,8 +568,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 }
                 else {
                     UpnpStop();
-                    PcpStop();
-                    SetDlgItemTextA(hwnd, IDC_STATIC_INFO, "");
+                    SetDlgItemTextA(hwnd, IDC_STATIC_INFO, "正在移除 PCP 映射...");
+                    UpdateWindow(hwnd);
+                    PcpStop();   // 同步等待删除结果，结果通过 WM_APP_PCP_UPDATE 显示
                 }
                 UpdateQRCode();
                 InvalidateRect(hwnd, NULL, TRUE);
