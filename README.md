@@ -60,6 +60,16 @@ gradlew assembleDebug
 - UPnP 使用 [miniupnpc](https://github.com/miniupnp/miniupnpc)（BSD 协议，见 `CPP/MSFSSimConnect/ThirdParty/miniupnpc/LICENSE`）
 - 本项目基于 [sunmutian88/msfs_map](https://github.com/sunmutian88/msfs_map) 修改而来
 
+## Star History
+
+<a href="https://www.star-history.com/?repos=jinshichang%2Fmsfs-simgpstoandroid&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=jinshichang/msfs-simgpstoandroid&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=jinshichang/msfs-simgpstoandroid&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=jinshichang/msfs-simgpstoandroid&type=date&legend=top-left" />
+ </picture>
+</a>
+
 ## 🍋 支持
 
 觉得好就请我喝杯柠檬水吧～
